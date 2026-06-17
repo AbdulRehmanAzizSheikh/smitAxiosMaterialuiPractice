@@ -5,14 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function Card() {
+export default function TheCard({image}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="green iguana"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={image?image:'https://www.mamp.one/wp-content/uploads/2024/09/image-resources2.jpg'}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
