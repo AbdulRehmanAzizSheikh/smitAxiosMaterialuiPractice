@@ -1,17 +1,34 @@
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
-import Card from './components/Card'
+import ProductCard from './components/ProductCard'
+import axios from 'axios'
+import { Grid, Container, Typography } from '@mui/material';
 function App() {
+  const [products, setProducts] = useState([])
+  const getProducts = async () => {
+    const data = await (await axios.get('https://dummyjson.com/products')).data.products
+    setProducts(data)
+    log
+  }
+  useEffect(() => {
+    getProducts()
+  }, [])
+  console.log(products);
+
   return (
     <div className='flex flex-col gap-10'>
       <Navbar />
-      <div className='flex gap-5 flex-wrap justify-around'>
-        <Card image='https://www.mamp.one/wp-content/uploads/2024/09/image-resources2.jpg'/>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+      <Container sx={{ py: 4 }}>
+        <Typography variant="h4" component="h2" align="center" gutterBottom sx={{ fontWeight: 'bold', mb: 4 }}>
+          Our Products
+        </Typography>
+
+        <Grid className='grid grid-cols-4 gap-5'>
+          {products.map((product) => (
+              <ProductCard product={product} />
+          ))}
+        </Grid>
+      </Container>
     </div>
   )
 }
