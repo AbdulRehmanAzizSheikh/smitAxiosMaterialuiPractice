@@ -8,7 +8,6 @@ function App() {
   const getProducts = async () => {
     const data = await (await axios.get('https://dummyjson.com/products')).data.products
     setProducts(data)
-    log
   }
   useEffect(() => {
     getProducts()
